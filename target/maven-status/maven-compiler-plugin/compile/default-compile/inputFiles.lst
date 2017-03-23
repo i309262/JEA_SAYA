@@ -1,7 +1,10 @@
-/home/saya/NetBeansProjects/Kwetter/src/main/java/KweetResource.java
-/home/saya/NetBeansProjects/Kwetter/src/main/java/Kweet.java
-/home/saya/NetBeansProjects/Kwetter/src/main/java/JAXRSConfiguration.java
+/home/saya/NetBeansProjects/Kwetter/src/main/java/dao/GenericDao.java
+/home/saya/NetBeansProjects/Kwetter/src/main/java/dao/UserDAOJPAImpl.java
+/home/saya/NetBeansProjects/Kwetter/src/main/java/dao/UserDao.java
+/home/saya/NetBeansProjects/Kwetter/src/main/java/nl/fontys/jea/kwetter/Kweet.java
 /home/saya/NetBeansProjects/Kwetter/src/main/java/commons/domain/BaseEntity.java
-/home/saya/NetBeansProjects/Kwetter/src/main/java/User.java
-/home/saya/NetBeansProjects/Kwetter/src/main/java/Role.java
+/home/saya/NetBeansProjects/Kwetter/src/main/java/nl/fontys/jea/kwetter/User.java
+/home/saya/NetBeansProjects/Kwetter/src/main/java/nl/fontys/jea/kwetter/JAXRSConfiguration.java
+/home/saya/NetBeansProjects/Kwetter/src/main/java/nl/fontys/jea/kwetter/KweetResource.java
 /home/saya/NetBeansProjects/Kwetter/src/main/java/testlol.java
+/home/saya/NetBeansProjects/Kwetter/src/main/java/nl/fontys/jea/kwetter/Role.java

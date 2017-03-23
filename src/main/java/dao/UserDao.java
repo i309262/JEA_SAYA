@@ -41,10 +41,10 @@ public interface UserDao
 
     /**
      *
-     * @param email
+     * @param username
      * @return unique user instance with parameter email or null if such user doesn't exist
      */
-    User findByEmail(String email);
+    User findByUsername(String username);
 
     /**
      * Remove the entity instance

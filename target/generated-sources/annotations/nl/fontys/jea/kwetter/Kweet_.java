@@ -1,11 +1,12 @@
-import nl.fontys.jea.kwetter.Kweet;
-import nl.fontys.jea.kwetter.User;
+package nl.fontys.jea.kwetter;
+
 import java.util.Calendar;
 import javax.annotation.Generated;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
+import nl.fontys.jea.kwetter.User;
 
-@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2017-03-22T20:15:55")
+@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2017-03-23T11:03:27")
 @StaticMetamodel(Kweet.class)
 public class Kweet_ { 
 

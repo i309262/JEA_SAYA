@@ -8,6 +8,8 @@ import javax.management.relation.Role;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -20,6 +22,16 @@ import javax.persistence.Id;
  * @author saya
  */
   @Entity
+  @NamedQueries
+        (
+         {
+    //@NamedQuery(name = "Account.getAll", query = "select a from Account as a"),
+    @NamedQuery(name = "User.count", query = "select count(u) from User as u"),
+    //@NamedQuery(name = "Account.findByAccountNr", query = "select a from Account as a where a.accountNr = :accountNr")
+    //@NamedQuery(name = "User.findByEmail", query = "select u from User as u where u.email = :email"),
+    @NamedQuery(name = "User.findByUserName", query = "select u from User as u where u.username = :username")
+         }
+        )
   public class User implements Serializable
   {
     @Id @GeneratedValue

@@ -21,7 +21,7 @@ import nl.fontys.jea.kwetter.User;
 public class UserDAOJPAImpl implements UserDao 
 {
  // private HashMap<String, User> users;
-    public static EntityManagerFactory emf = Persistence.createEntityManagerFactory("PUauction");
+    public static EntityManagerFactory emf = Persistence.createEntityManagerFactory("PUkwetter");
     public EntityManager em;
 
 
@@ -39,7 +39,7 @@ public class UserDAOJPAImpl implements UserDao
 
     @Override
     public void create(User user) {
-         if (findByEmail(user.getEmail()) != null) {
+         if (findByUserName(user.getUsername()) != null) {
             throw new EntityExistsException();
         }
         em.persist(user);
@@ -48,7 +48,7 @@ public class UserDAOJPAImpl implements UserDao
 
     @Override
     public void edit(User user) {
-        if (findByEmail(user.getEmail()) == null) {
+        if (findByUserName(user.getUsername()) == null) {
             throw new IllegalArgumentException();
         }
         //users.put(user.getEmail(), user);
@@ -64,20 +64,21 @@ public class UserDAOJPAImpl implements UserDao
         return em.createQuery(cq).getResultList();
     }
 
-    @Override
-    public User findByEmail(String email) {
-        //return em.find(User.class, email);
-
-        Query q = em.createNamedQuery("User.findByEmail", User.class);
-        q.setParameter("email", email);
-        try
-        {
-            return (User) q.getSingleResult();
-        } catch (Exception e)
-        {
-            return null;
-        }
-    }
+//    @Override
+//    public User findByEmail(String email) {
+//        //return em.find(User.class, email);
+//
+//        Query q = em.createNamedQuery("User.findByEmail", User.class);
+//        q.setParameter("email", email);
+//        try
+//        {
+//            return (User) q.getSingleResult();
+//        } catch (Exception e)
+//        {
+//            return null;
+//        }
+//    }
+    
 
     @Override
     public void remove(User user) {
@@ -85,5 +86,18 @@ public class UserDAOJPAImpl implements UserDao
         //users.remove(user.getEmail());
     }
 
-    
+    @Override
+    public User findByUserName(String username) 
+    {
+        Query q = em.createNamedQuery("User.findByUserName", User.class);
+        q.setParameter("username", username);
+        try
+        {
+                return (User) q.getSingleResult();
+        } 
+        catch (Exception e)
+        {
+                return null;
+        }
+    }
 }

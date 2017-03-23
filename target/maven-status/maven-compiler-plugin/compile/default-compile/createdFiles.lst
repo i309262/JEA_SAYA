@@ -1,9 +1,4 @@
-Kweet_.class
-JAXRSConfiguration.class
-KweetResource.class
-Kweet.class
-User.class
-commons/domain/BaseEntity.class
-User_.class
-Role.class
-testlol.class
+dao/GenericDao.class
+dao/UserDao.class
+nl/fontys/jea/kwetter/User.class
+nl/fontys/jea/kwetter/Kweet.class
