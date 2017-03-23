@@ -1,6 +1,4 @@
-
-import javax.ws.rs.ApplicationPath;
-import javax.ws.rs.core.Application;
+package nl.fontys.jea.kwetter;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -12,8 +10,8 @@ import javax.ws.rs.core.Application;
  *
  * @author saya
  */
-@ApplicationPath("resources")
-public class JAXRSConfiguration extends Application
+public enum Role 
 {
-    
+    User,
+    Moderator
 }

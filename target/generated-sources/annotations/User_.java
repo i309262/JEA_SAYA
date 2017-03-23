@@ -1,3 +1,4 @@
+import nl.fontys.jea.kwetter.User;
 import javax.annotation.Generated;
 import javax.management.relation.Role;
 import javax.persistence.metamodel.ListAttribute;

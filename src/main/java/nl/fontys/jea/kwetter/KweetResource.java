@@ -1,4 +1,8 @@
+package nl.fontys.jea.kwetter;
 
+
+import nl.fontys.jea.kwetter.Kweet;
+import nl.fontys.jea.kwetter.User;
 import java.util.Calendar;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -20,25 +24,13 @@ import javax.ws.rs.core.Response;
 @Path("/kweet")
 public class KweetResource 
 {
-    @GET 
-    @Path("/test")
-    @Produces(MediaType.APPLICATION_JSON)
-    //@Path("/{id}") 
-    public testlol teststring()
-    {
-//        Kweet k = new Kweet("test bericht", new User("Saya"), Calendar.getInstance());
-//        return k;
-        
-        testlol lol = new testlol(1, "lol");
-        return lol;
-    }
     
     @GET 
     @Path("/test1")
     @Produces(MediaType.APPLICATION_JSON)
     public Kweet testKweet()
     {   
-        Kweet k = new Kweet(1, "Hallo");
+        Kweet k = new Kweet("leuk", new User("Saya"), Calendar.getInstance());
         
         return k;
     }

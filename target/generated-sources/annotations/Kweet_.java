@@ -1,3 +1,5 @@
+import nl.fontys.jea.kwetter.Kweet;
+import nl.fontys.jea.kwetter.User;
 import java.util.Calendar;
 import javax.annotation.Generated;
 import javax.persistence.metamodel.SingularAttribute;

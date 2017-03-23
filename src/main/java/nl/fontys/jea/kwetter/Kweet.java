@@ -1,4 +1,7 @@
+package nl.fontys.jea.kwetter;
 
+
+import nl.fontys.jea.kwetter.User;
 import commons.domain.BaseEntity;
 import java.io.Serializable;
 import java.util.Calendar;
@@ -33,11 +36,11 @@ public class Kweet implements Serializable
         this.datetime = datetime;
     }
 
-    public Kweet(long id, String message)
-    {
-        this.id = id;
-        this.message = message;
-    }
+//    public Kweet(long id, String message)
+//    {
+//        this.id = id;
+//        this.message = message;
+//    }
     
 
     public String getMessage() 
@@ -78,8 +81,8 @@ public class Kweet implements Serializable
         kweet.setDatetime(Calendar.getInstance());
     }
     
-//    public Kweet()
-//    {
-//
-//    }
+    public Kweet()
+    {
+
+    }
 }

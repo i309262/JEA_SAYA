@@ -1,3 +1,5 @@
+package nl.fontys.jea.kwetter;
+
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -43,15 +45,15 @@ import javax.persistence.Id;
     	this.username = username;
     }
     
-    public User(String username, String password, String name, String bio, String location, String website) 
-    {
-        this.username = username;
-        this.password = password;
-        this.name = name;
-        this.bio = bio;
-        this.location = location;
-        this.website = website;
-    }
+//    public User(String username, String password, String name, String bio, String location, String website) 
+//    {
+//        this.username = username;
+//        this.password = password;
+//        this.name = name;
+//        this.bio = bio;
+//        this.location = location;
+//        this.website = website;
+//    }
 
     public String getUsername() 
     {
