@@ -22,9 +22,8 @@ import model.User;
  *
  * @author saya
  */
-//@LocalBean
-@Stateless
-@Named
+//@Stateless
+//@Named
 public class kwetterService implements Serializable
 {
 //    @Inject
@@ -35,7 +34,7 @@ public class kwetterService implements Serializable
     //@EJB
     KweetDAOCollectionImpl KweetDAO = new KweetDAOCollectionImpl();
     
-    @Inject
+    //@Inject
     public kwetterService()
     {
         

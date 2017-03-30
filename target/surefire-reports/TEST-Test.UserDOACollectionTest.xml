@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="3" failures="0" name="Test.UserDOACollectionTest" time="0.15" errors="0" skipped="0">
+<testsuite tests="3" failures="0" name="Test.UserDOACollectionTest" time="0.12" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="/usr/lib/jvm/jre/lib/amd64"/>
@@ -60,7 +60,7 @@
     <property name="sun.desktop" value="gnome"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase classname="Test.UserDOACollectionTest" name="removeUserTest" time="0.002"/>
+  <testcase classname="Test.UserDOACollectionTest" name="removeUserTest" time="0.001"/>
   <testcase classname="Test.UserDOACollectionTest" name="findUserTest" time="0"/>
   <testcase classname="Test.UserDOACollectionTest" name="createUserTest" time="0"/>
 </testsuite>

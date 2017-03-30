@@ -22,9 +22,9 @@ import model.User;
  *
  * @author saya
  */
-@Stateless
-@LocalBean
-@EJB(beanInterface = UserDAOJPAImpl.class, name = "UserDAOJPAImpl")
+//@Stateless
+//@LocalBean
+//@EJB(beanInterface = UserDAOJPAImpl.class, name = "UserDAOJPAImpl")
 public class UserDAOJPAImpl implements UserDao, Serializable 
 {
     public static EntityManagerFactory emf = Persistence.createEntityManagerFactory("PUKwetter");
@@ -60,28 +60,22 @@ public class UserDAOJPAImpl implements UserDao, Serializable
 
     @Override
     public void create(User user) {
-//         if (findByUserName(user.getUsername()) != null) {
-//            throw new EntityExistsException();
-//        }
+
+        em.getTransaction().begin();
         em.persist(user);
+        em.getTransaction().commit();
+        //em.close();
     }
 
     @Override
     public void edit(User user) {
-//        if (findByUserName(user.getUsername()) == null) {
-//            throw new IllegalArgumentException();
-//        }
 
         em.merge(user);
     }
 
     @Override
     public List<User> findAll() {
-
-//        CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-//        cq.select(cq.from(User.class));
-//        return em.createQuery(cq).getResultList();
-//       
+  
         TypedQuery<User> query = em.createNamedQuery("User.findAll", User.class);
         try {
             return query.getResultList();
