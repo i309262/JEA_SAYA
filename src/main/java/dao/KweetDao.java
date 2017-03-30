@@ -6,13 +6,14 @@
 package dao;
 
 import java.util.List;
+import model.Kweet;
 import model.User;
 
 /**
  *
  * @author saya
  */
-public interface UserDao 
+public interface KweetDao 
 {
         /**
      *
@@ -22,36 +23,28 @@ public interface UserDao
 
     /**
      * The user is persisted. If a user with the same email allready exists an EntityExistsException is thrown
-     * @param user
+     * @param kweet
      */
-    void create(User user);
+    void create(Kweet kweet);
 
-    /**
-     * Merge the state of the given user into persistant context. If the user did not exist an IllegalArgumentException is thrown
-     * @param user
-     */
-    void edit(User user);
-
+    void edit(Kweet kweet);
 
     /**
      *
      * @return list of user instances
      */
-    List<User> findAll();
+    List<Kweet> findAll();
 
     /**
      *
-     * @param username
+     * @param kweet
      * @return unique user instance with parameter email or null if such user doesn't exist
      */
-    User findByUserName(String username);
-    
-    List<User> findAllUsersByName(String username);
+    List<Kweet> findByUser(User user);
 
     /**
      * Remove the entity instance
-     * @param user - entity instance
+     * @param kweet
      */
-    void remove(User user);
-
+    void remove(Kweet kweet);
 }

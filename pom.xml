@@ -84,7 +84,8 @@
         </dependency>
         <!-- Testing with in memory databaase -->
 
-        <!-- Persistence dependency (Application database) -->
+
+
         <dependency>
             <groupId>org.eclipse.persistence</groupId>
             <artifactId>eclipselink</artifactId>

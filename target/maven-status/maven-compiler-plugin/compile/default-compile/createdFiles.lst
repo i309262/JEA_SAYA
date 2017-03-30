@@ -1,4 +1,13 @@
-dao/GenericDao.class
+dao/KweetDao.class
+model/Kweet_.class
+model/Role.class
+nl/fontys/jea/kwetter/JAXRSConfiguration.class
+model/User_.class
+dao/UserDAOCollectionImpl.class
+dao/UserDAOJPAImpl.class
+model/Kweet.class
+service/kwetterService.class
+model/User.class
+dao/KweetDAOCollectionImpl.class
+rest/KweetResource.class
 dao/UserDao.class
-nl/fontys/jea/kwetter/User.class
-nl/fontys/jea/kwetter/Kweet.class
