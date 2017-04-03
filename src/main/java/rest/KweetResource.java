@@ -30,9 +30,9 @@ import service.kwetterService;
 //@Stateless
 public class KweetResource
 {
-    //@Inject
-    //kwetterService kwetterService;
-    kwetterService kwetterService = new kwetterService();
+    @EJB
+    kwetterService kwetterService;
+    //kwetterService kwetterService = new kwetterService();
     
     
     @GET 

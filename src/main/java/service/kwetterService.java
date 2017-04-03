@@ -22,15 +22,18 @@ import model.User;
  *
  * @author saya
  */
-//@Stateless
-//@Named
+@Stateless
+@Named
+@LocalBean
 public class kwetterService implements Serializable
 {
 //    @Inject
 //    UserDAOCollectionImpl UserDAO;
-//    @EJB(name = "UserDAOJPAImpl")
-//    UserDAOJPAImpl UserDAO;
-    UserDAOJPAImpl UserDAO = new UserDAOJPAImpl();
+    
+    //@EJB(name = "UserDAOJPAImpl")
+    @Inject
+    UserDAOJPAImpl UserDAO;
+    //UserDAOJPAImpl UserDAO = new UserDAOJPAImpl();
     //@EJB
     KweetDAOCollectionImpl KweetDAO = new KweetDAOCollectionImpl();
     

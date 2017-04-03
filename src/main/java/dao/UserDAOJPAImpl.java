@@ -10,10 +10,12 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
+import javax.enterprise.context.RequestScoped;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.NoResultException;
 import javax.persistence.Persistence;
+import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import model.User;
@@ -25,11 +27,13 @@ import model.User;
 //@Stateless
 //@LocalBean
 //@EJB(beanInterface = UserDAOJPAImpl.class, name = "UserDAOJPAImpl")
+@RequestScoped
 public class UserDAOJPAImpl implements UserDao, Serializable 
 {
-    public static EntityManagerFactory emf = Persistence.createEntityManagerFactory("PUKwetter");
-    //@PersistenceContext(unitName = "PUKwetter")
-    private EntityManager em = emf.createEntityManager();
+    //public static EntityManagerFactory emf = Persistence.createEntityManagerFactory("PUKwetter");
+    @PersistenceContext(unitName = "PUKwetter")
+    private EntityManager em;
+    //private EntityManager em = emf.createEntityManager();
 
     public UserDAOJPAImpl() {
     }
@@ -40,10 +44,10 @@ public class UserDAOJPAImpl implements UserDao, Serializable
 //        this.em = em;
 //    }
     
-    public void setEm(EntityManager em) 
-    {
-        this.em = em;
-    }
+//    public void setEm(EntityManager em) 
+//    {
+//        this.em = em;
+//    }
 
     @Override
     public int count() {
@@ -61,9 +65,9 @@ public class UserDAOJPAImpl implements UserDao, Serializable
     @Override
     public void create(User user) {
 
-        em.getTransaction().begin();
+        //em.getTransaction().begin();
         em.persist(user);
-        em.getTransaction().commit();
+        //em.getTransaction().commit();
         //em.close();
     }
 
