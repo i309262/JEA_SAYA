@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="3" failures="0" name="Test.UserDOACollectionTest" time="0.093" errors="0" skipped="0">
+<testsuite tests="3" failures="0" name="Test.UserDOACollectionTest" time="0.057" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="/usr/lib/jvm/jre/lib/amd64"/>
@@ -32,7 +32,7 @@
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="java.class.version" value="52.0"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
-    <property name="os.version" value="4.8.0-45-generic"/>
+    <property name="os.version" value="4.8.0-46-generic"/>
     <property name="user.home" value="/home/saya"/>
     <property name="user.timezone" value="Europe/Amsterdam"/>
     <property name="java.awt.printerjob" value="sun.print.PSPrinterJob"/>

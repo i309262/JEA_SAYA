@@ -69,8 +69,8 @@ public class KweetResource
     public String insertUsers() {
         //saya
         User userSaya = new User("saya", "saya123", "Saya Laugs", "Ik ben Ik", "Eindhoven", "www.saya.nl");
-        //Kweet kweetSaya = new Kweet("dit is een kweet", userSaya);
-        //userSaya.addKweet(kweetSaya);
+        Kweet kweetSaya = new Kweet("dit is een kweet", userSaya);
+        userSaya.addKweet(kweetSaya);
         //userSaya.setRole(Role.Moderator);
         kwetterService.createUser(userSaya);
         

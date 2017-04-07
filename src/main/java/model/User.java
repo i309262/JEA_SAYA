@@ -5,6 +5,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -36,6 +37,7 @@ import javax.persistence.OneToMany;
   {
     @Id @GeneratedValue
     private long id;
+    @Column(unique = true)
     private String username;
     private String password;
     private String name;
@@ -43,7 +45,7 @@ import javax.persistence.OneToMany;
     private String location;
     private String website;
     
-    @OneToMany(mappedBy = "poster", cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "poster", cascade = CascadeType.ALL)
     private List<Kweet> kweets = new ArrayList<Kweet>();
     
     @ManyToMany(cascade = CascadeType.REMOVE)

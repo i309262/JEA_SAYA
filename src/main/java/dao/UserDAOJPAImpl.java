@@ -64,11 +64,7 @@ public class UserDAOJPAImpl implements UserDao, Serializable
 
     @Override
     public void create(User user) {
-
-        //em.getTransaction().begin();
         em.persist(user);
-        //em.getTransaction().commit();
-        //em.close();
     }
 
     @Override

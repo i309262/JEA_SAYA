@@ -23,7 +23,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author saya
  */
 @Entity
-@XmlRootElement
+//@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Kweet.findAll", query = "SELECT k FROM Kweet k"),
     @NamedQuery(name = "Kweet.findByID", query = "SELECT k FROM Kweet k WHERE k.id = :id"),
@@ -37,7 +37,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     private long id;
     private String message;
     
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    //@ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne(optional = false)
     private User poster;
     
     @Temporal(TemporalType.DATE)
