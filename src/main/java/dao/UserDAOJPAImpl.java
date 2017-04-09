@@ -7,17 +7,13 @@ package dao;
 
 import java.io.Serializable;
 import java.util.List;
-import javax.ejb.EJB;
-import javax.ejb.LocalBean;
-import javax.ejb.Stateless;
 import javax.enterprise.context.RequestScoped;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 import javax.persistence.NoResultException;
-import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaQuery;
 import model.User;
 
 /**
@@ -51,15 +47,15 @@ public class UserDAOJPAImpl implements UserDao, Serializable
 
     @Override
     public int count() {
-//        Query q = em.createNamedQuery("User.count", User.class);
-//        return ((Long) q.getSingleResult()).intValue();
+        Query q = em.createNamedQuery("User.count", User.class);
+        return ((Long) q.getSingleResult()).intValue();
 
-        Query query = em.createNamedQuery("User.count");
-        try {
-            return (int) query.getSingleResult();
-        } catch (NoResultException ex) {
-            return 0;
-        }
+//        Query query = em.createNamedQuery("User.count");
+//        try {
+//            return (int) query.getSingleResult();
+//        } catch (NoResultException ex) {
+//            return 0;
+//        }
     }
 
     @Override
@@ -74,14 +70,18 @@ public class UserDAOJPAImpl implements UserDao, Serializable
     }
 
     @Override
-    public List<User> findAll() {
-  
-        TypedQuery<User> query = em.createNamedQuery("User.findAll", User.class);
-        try {
-            return query.getResultList();
-        } catch (NoResultException ex) {
-            return null;
-}
+    public List<User> findAll() 
+    {
+        return em.createNamedQuery("User.findAll", User.class).getResultList();
+//        
+//        Query query = em.createNamedQuery("User.findAll", User.class);
+//        try 
+//        {
+//            return query.getResultList();
+//        } catch (NoResultException ex) 
+//        {
+//            return null;
+//        }
     }
 
     @Override

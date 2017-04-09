@@ -28,16 +28,17 @@ import javax.persistence.OneToMany;
   @NamedQueries
         (
          {
-    @NamedQuery(name = "User.findAll", query = "SELECT u FROM User u"),
+    @NamedQuery(name = "User.findAll", query = "SELECT u.username FROM User u"),
     @NamedQuery(name = "User.count", query = "select count(u) from User as u"),
     @NamedQuery(name = "User.findByUserName", query = "select u from User as u where u.username = :username")
          }
         )
   public class User implements Serializable
   {
-    @Id @GeneratedValue
-    private long id;
-    @Column(unique = true)
+    //@Id @GeneratedValue
+    //private long id;
+    //@Column(unique = true)
+    @Id
     private String username;
     private String password;
     private String name;
@@ -45,7 +46,7 @@ import javax.persistence.OneToMany;
     private String location;
     private String website;
     
-    @OneToMany(mappedBy = "poster", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "poster", cascade = CascadeType.PERSIST)
     private List<Kweet> kweets = new ArrayList<Kweet>();
     
     @ManyToMany(cascade = CascadeType.REMOVE)

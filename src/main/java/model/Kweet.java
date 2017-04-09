@@ -5,7 +5,9 @@ import java.util.Calendar;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -33,12 +35,14 @@ import javax.xml.bind.annotation.XmlRootElement;
 {
 
     @Id
-    @GeneratedValue
-    private long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
     private String message;
     
     //@ManyToOne(cascade = CascadeType.PERSIST)
-    @ManyToOne(optional = false)
+    @ManyToOne(cascade = CascadeType.REMOVE)
+    @JoinColumn(name = "poster")
+    //@ManyToOne(optional = false)
     private User poster;
     
     @Temporal(TemporalType.DATE)
@@ -60,7 +64,7 @@ import javax.xml.bind.annotation.XmlRootElement;
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
     public String getMessage() {

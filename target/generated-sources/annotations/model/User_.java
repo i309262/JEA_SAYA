@@ -8,7 +8,7 @@ import model.Kweet;
 import model.Role;
 import model.User;
 
-@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2017-04-06T13:52:04")
+@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2017-04-09T21:00:06")
 @StaticMetamodel(User.class)
 public class User_ { 
 
@@ -21,7 +21,6 @@ public class User_ {
     public static volatile SingularAttribute<User, String> bio;
     public static volatile ListAttribute<User, Kweet> kweets;
     public static volatile SingularAttribute<User, String> location;
-    public static volatile SingularAttribute<User, Long> id;
     public static volatile SingularAttribute<User, String> username;
 
 }

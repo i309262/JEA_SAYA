@@ -3,9 +3,9 @@
   <persistence-unit name="PUKwetter" transaction-type="JTA">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <jta-data-source>jdbc/JEA_DB</jta-data-source>
-    <class>model.Kweet</class>
     <class>model.User</class>
-    <exclude-unlisted-classes>false</exclude-unlisted-classes>
+    <class>model.Kweet</class>
+    <exclude-unlisted-classes>true</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
     </properties>

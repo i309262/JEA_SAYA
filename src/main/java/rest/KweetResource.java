@@ -49,12 +49,7 @@ public class KweetResource
     
     @GET
     @Path("/all")
-    public List<User> listAllUsers() {
-//        User userSaya = new User("saya", "saya123", "Saya Laugs", "Ik ben Ik", "Eindhoven", "www.saya.nl");
-//        User userHarry = new User("harry", "harry123", "Harry Harrison", "Ik ben Harry", "Eindhoven", "www.harry.nl");
-//        kwetterService.createUser(userSaya);
-//        kwetterService.createUser(userHarry);
-        
+    public List<User> listAllUsers() {   
         return kwetterService.findAllUsers();
     }
     
@@ -65,20 +60,26 @@ public class KweetResource
     }
     
     @GET
+    @Path("/count")
+    public int countUsers(){
+        return kwetterService.countUsers();
+    }
+    
+    @GET
     @Path("/insert")
     public String insertUsers() {
         //saya
-        User userSaya = new User("saya", "saya123", "Saya Laugs", "Ik ben Ik", "Eindhoven", "www.saya.nl");
-        Kweet kweetSaya = new Kweet("dit is een kweet", userSaya);
-        userSaya.addKweet(kweetSaya);
+        User userSaya = new User("saya", "saya1234", "Saya Laugs", "Ik ben Ik", "Eindhoven", "www.saya.nl");
+        //Kweet kweetSaya = new Kweet("dit is een kweet", userSaya);
+        //userSaya.addKweet(kweetSaya);
         //userSaya.setRole(Role.Moderator);
         kwetterService.createUser(userSaya);
         
         //harry
-        User userHarry = new User("flakka", "harry123", "Harry Harrison", "Ik ben Harry", "Eindhoven", "www.harry.nl");
-//        Kweet kweetHarry = new Kweet("dit is een kweet", userHarry);
-//        userHarry.addKweet(kweetHarry);
-//        userHarry.setRole(Role.User);
+        User userHarry = new User("flakka", "harry1234", "Harry Harrison", "Ik ben Harry", "Eindhoven", "www.harry.nl");
+        //Kweet kweetHarry = new Kweet("dit is een kweet", userHarry);
+        //userHarry.addKweet(kweetHarry);
+        //userHarry.setRole(Role.User);
         kwetterService.createUser(userHarry);
         
         return "succesfully inserted users with kweets";

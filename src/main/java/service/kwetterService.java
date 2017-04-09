@@ -71,6 +71,11 @@ public class kwetterService implements Serializable
     public void deleteKweet(Kweet kweet) {
         KweetDAO.remove(kweet);
     }
+    
+    public int countUsers()
+    {
+        return UserDAO.count();
+    }
 
     public List<Kweet> findAllKweets() {
         return KweetDAO.findAll();
