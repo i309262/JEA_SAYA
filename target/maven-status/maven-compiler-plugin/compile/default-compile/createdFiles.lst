@@ -3,6 +3,7 @@ model/Kweet_.class
 model/Role.class
 nl/fontys/jea/kwetter/JAXRSConfiguration.class
 model/User_.class
+rest/JSONPrep.class
 dao/UserDAOCollectionImpl.class
 dao/UserDAOJPAImpl.class
 model/Kweet.class
@@ -11,3 +12,4 @@ model/User.class
 dao/KweetDAOCollectionImpl.class
 rest/KweetResource.class
 dao/UserDao.class
+model/Role_.class

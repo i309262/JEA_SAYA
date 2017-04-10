@@ -85,7 +85,12 @@ public class UserDAOJPAImpl implements UserDao, Serializable
     }
 
     @Override
-    public void remove(User user) {
+    public void remove(User user) 
+    {
+        if (!em.contains(user)) 
+        {
+            user = em.merge(user);
+        }
         em.remove(user);
     }
 

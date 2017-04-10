@@ -5,14 +5,15 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -28,11 +29,12 @@ import javax.persistence.OneToMany;
   @NamedQueries
         (
          {
-    @NamedQuery(name = "User.findAll", query = "SELECT u.username FROM User u"),
+    @NamedQuery(name = "User.findAll", query = "FROM User u"),
     @NamedQuery(name = "User.count", query = "select count(u) from User as u"),
     @NamedQuery(name = "User.findByUserName", query = "select u from User as u where u.username = :username")
          }
         )
+  @Table(name = "user")
   public class User implements Serializable
   {
     //@Id @GeneratedValue
@@ -46,13 +48,33 @@ import javax.persistence.OneToMany;
     private String location;
     private String website;
     
-    @OneToMany(mappedBy = "poster", cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "poster", cascade = CascadeType.ALL)
     private List<Kweet> kweets = new ArrayList<Kweet>();
     
     @ManyToMany(cascade = CascadeType.REMOVE)
+    @JoinTable(
+            name = "USER_FOLLOWERS",
+            joinColumns = @JoinColumn(
+                    name = "user",
+                    referencedColumnName = "username"),
+            inverseJoinColumns = @JoinColumn(
+                    name = "followers",
+                    referencedColumnName = "username"
+            )
+    )
     private List<User> followers = new ArrayList<User>();
     
     @ManyToMany(cascade = CascadeType.REMOVE)
+    @JoinTable(
+            name = "USER_FOLLOWING",
+            joinColumns = @JoinColumn(
+                    name = "user",
+                    referencedColumnName = "username"),
+            inverseJoinColumns = @JoinColumn(
+                    name = "following",
+                    referencedColumnName = "username"
+            )
+    )
     private List<User> following = new ArrayList<User>();
     private Role role;
 	
@@ -64,6 +86,12 @@ import javax.persistence.OneToMany;
     public User(String username)
     {
     	this.username = username;
+    }
+    
+    public User(String username, String password)
+    {
+    	this.username = username;
+        this.password = password;
     }
     
     public User(String username, String password, String name, String bio, String location, String website) 

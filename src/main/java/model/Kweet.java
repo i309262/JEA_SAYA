@@ -40,7 +40,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     private String message;
     
     //@ManyToOne(cascade = CascadeType.PERSIST)
-    @ManyToOne(cascade = CascadeType.REMOVE)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "poster")
     //@ManyToOne(optional = false)
     private User poster;
