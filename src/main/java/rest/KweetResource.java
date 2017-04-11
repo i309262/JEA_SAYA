@@ -139,7 +139,7 @@ public class KweetResource
     @Path("/insert")
     public String insertUsers() {
         //addroles
-        Role regular = new Role("regular");
+        //Role regular = new Role("User");
         
         //saya
         User userSaya = new User("saya", "saya1234", "Saya Laugs", "Ik ben Ik", "Eindhoven", "www.saya.nl");
@@ -154,6 +154,7 @@ public class KweetResource
         //userHarry.addKweet(kweetHarry);
         userHarry.setPassword("df46219531cb5d522d0845901978dccfa286a5b0437f4f9cd4e485064f6b632c");
         userHarry.setRole(new Role("regular"));
+        userHarry.addFollower(userSaya);
         kwetterService.createUser(userHarry);
         
         return "succesfully inserted users with kweets";

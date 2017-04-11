@@ -22,6 +22,7 @@ public class JSONPrep
 
     public static User prepToUserForJson(User user){
         user.setPassword(null);
+        user.setRole(null);
         //user.setKweets(null);
          
         if (user.getKweets() != null){

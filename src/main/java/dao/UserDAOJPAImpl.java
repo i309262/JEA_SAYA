@@ -40,10 +40,10 @@ public class UserDAOJPAImpl implements UserDao, Serializable
 //        this.em = em;
 //    }
     
-//    public void setEm(EntityManager em) 
-//    {
-//        this.em = em;
-//    }
+    public void setEm(EntityManager em) 
+    {
+        this.em = em;
+    }
 
     @Override
     public int count() {

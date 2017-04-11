@@ -1,12 +1,13 @@
-package model;
+package model.two;
 
 import java.util.Calendar;
 import javax.annotation.Generated;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
+import model.Kweet;
 import model.User;
 
-@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2017-04-10T21:32:35")
+@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2017-04-11T13:14:56")
 @StaticMetamodel(Kweet.class)
 public class Kweet_ { 
 

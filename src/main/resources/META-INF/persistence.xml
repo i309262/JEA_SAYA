@@ -8,7 +8,23 @@
     <class>model.Role</class>
     <exclude-unlisted-classes>true</exclude-unlisted-classes>
     <properties>
-      <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
+      <!-- deze misschien leegmaken als jpa rest calls niet meer werken -->
+      <property name="eclipselink.ddl-generation" value="drop-and-create-tables"/>
+      <property name="eclipselink.canonicalmodel.subpackage" value="one"/>
+    </properties>
+  </persistence-unit>
+  <persistence-unit name="PUKwetterTest" transaction-type="RESOURCE_LOCAL">
+    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <class>model.Kweet</class>
+    <class>model.Role</class>
+    <class>model.User</class>
+    <exclude-unlisted-classes>true</exclude-unlisted-classes>
+    <properties>
+      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/JEA_DB?useUnicode=true&amp;useJDBCCompliantTimezoneShift=true&amp;useLegacyDatetimeCode=false&amp;serverTimezone=UTC"/>
+      <property name="javax.persistence.jdbc.user" value="Saya"/>
+      <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
+      <property name="javax.persistence.jdbc.password" value="22522842"/>
+      <property name="eclipselink.canonicalmodel.subpackage" value="two"/>
     </properties>
   </persistence-unit>
 </persistence>

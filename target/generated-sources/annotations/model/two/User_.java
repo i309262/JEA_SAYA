@@ -1,4 +1,4 @@
-package model;
+package model.two;
 
 import javax.annotation.Generated;
 import javax.persistence.metamodel.ListAttribute;
@@ -8,7 +8,7 @@ import model.Kweet;
 import model.Role;
 import model.User;
 
-@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2017-04-10T21:32:35")
+@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2017-04-11T13:14:56")
 @StaticMetamodel(User.class)
 public class User_ { 
 
