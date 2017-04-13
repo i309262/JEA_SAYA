@@ -33,12 +33,18 @@ public class JSONPrep
             //user.getKweets().forEach(JsonPrep::prepKweetInUser);
         }
 
-//        if (user.getFollowing() != null){
-//            user.getFollowing().forEach(JSONPrep::prepUserInKweetForJson);
-//        }
-//        if (user.getFollowers() != null){
-//            user.getFollowers().forEach(JSONPrep::prepUserInKweetForJson);
-//        }
+        if (user.getFollowing() != null){
+            for(User u : user.getFollowing())
+            {
+                prepUserInKweetForJson(u);
+            }
+        }
+        if (user.getFollowers() != null){
+            for(User u : user.getFollowers())
+            {
+                prepUserInKweetForJson(u);
+            }
+        }
         return user;
     }
 

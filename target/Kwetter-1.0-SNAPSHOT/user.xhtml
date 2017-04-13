@@ -1,0 +1,90 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>USERS</title>
+    </h:head>
+    <h:body>
+
+        <h:panelGroup>
+            <h:form>
+                <h:outputText   value="#{authBean.getPrincipalName()}"/>
+                <h:commandLink  action="#{authBean.doLogout()}" value="Logout"/>
+            </h:form>
+        </h:panelGroup>
+        <br/>
+        <h:panelGroup>
+            <h:form>
+                <h:outputLabel value="Skill Filter: "/>  
+                <h:inputText value="#{UserBean.filter}" id="filter">
+                    <f:ajax event="keyup" execute="filter" render="studenten"/>
+                </h:inputText> 
+            </h:form>
+        </h:panelGroup>
+        <br/>
+        <h:panelGroup id="users">
+            <h:form>
+                <h:dataTable value="#{UserBean.getUsers()}" var ="user">
+                    <h:column>
+                        <f:facet name = "header">username</f:facet>
+                        <h:outputLabel value="#{user.username}"/>  
+                    </h:column> 
+                    <h:column>
+                        <f:facet name = "header"> name</f:facet>
+                        <h:outputLabel value ="#{user.password}"/>  
+                    </h:column> 
+                    <h:column>
+                        <f:facet name = "header">password</f:facet>
+                        <h:outputLabel value ="#{user.name}"/>  
+                    </h:column> 
+                    <h:column>
+                        <f:facet name = "header">Bio</f:facet>
+                        <h:outputLabel value ="#{user.bio}"/>  
+                    </h:column> 
+                    <h:column>
+                        <f:facet name = "header">Website</f:facet>
+                        <h:outputLabel value ="#{user.website}"/>  
+                    </h:column> 
+                    <h:column>
+                        <f:facet name = "header">location</f:facet>
+                        <h:outputLabel value ="#{user.location}"/>  
+                    </h:column> 
+                    <h:column>
+                        <h:commandButton value ="Follow" action="#{UserBean.addFollower(authBean.getPrincipalName(), user)}">
+                            <f:ajax event="action" render="users"/>
+                        </h:commandButton>
+                    </h:column>
+<!--
+                    <h:column>
+                        <h:commandButton rendered="#{authBean.admin}" value ="Remove" action="#{studentBean.removeStudent(student)}">
+                            <f:ajax event="action" render="studenten"/>
+                        </h:commandButton>
+                    </h:column>
+                    <h:column>
+                        <h:outputLink value ="studentdetail.xhtml">Details
+                            <f:param name="nameId" value="#{student.name}"/>
+                        </h:outputLink>
+                    </h:column>
+-->
+                </h:dataTable>
+            </h:form>
+        </h:panelGroup>
+         <br/>
+        <h:panelGroup id="User">
+            <h:form>
+                <h:panelGrid columns="2">
+                    username: <h:inputText value="#{UserBean.username}"/>
+                    password <h:inputText value="#{UserBean.password}"/>
+                    name <h:inputText value="#{UserBean.name}" />    
+                    bio <h:inputText value="#{UserBean.bio}"/>
+                    website <h:inputText value="#{UserBean.website}"/>
+                    location <h:inputText value="#{UserBean.location}"/>
+                </h:panelGrid>
+                <h:commandButton value ="AddUser" action="#{UserBean.addUser()}"/>
+            </h:form>
+        </h:panelGroup>
+    </h:body>
+</html>
+

@@ -2,6 +2,7 @@ package model;
 
 
 import java.io.Serializable;
+import java.security.MessageDigest;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.CascadeType;
@@ -95,9 +96,9 @@ import javax.persistence.Table;
     }
     
     public User(String username, String password, String name, String bio, String location, String website) 
-    {
+    {   
         this.username = username;
-        this.password = password;
+        this.password = sha256(password);
         this.name = name;
         this.bio = bio;
         this.location = location;
@@ -209,21 +210,37 @@ import javax.persistence.Table;
         kweets.add(kweet);
     }
 
-    public void addFollower(User kwetteraar)
+    public void addFollower(User user)
     {
-        if (kwetteraar != null && kwetteraar != this && !followers.contains(kwetteraar))
+        if (user != null && user != this && !followers.contains(user))
         {
-                followers.add(kwetteraar);
+                followers.add(user);
         }
     }
 
-    public void addFollowing(User kwetteraar)
-    {
-        if (kwetteraar != null && kwetteraar != this && !followers.contains(kwetteraar))
-        {
-                following.add(kwetteraar);
+    public void addFollowing(User follow) {
+        if (follow != null && following != null) {
+            following.add(follow);
+            follow.addFollower(this);
         }
     }
 	
+    public static String sha256(String base) {
+    try{
+        MessageDigest digest = MessageDigest.getInstance("SHA-256");
+        byte[] hash = digest.digest(base.getBytes("UTF-8"));
+        StringBuffer hexString = new StringBuffer();
+
+        for (int i = 0; i < hash.length; i++) {
+            String hex = Integer.toHexString(0xff & hash[i]);
+            if(hex.length() == 1) hexString.append('0');
+            hexString.append(hex);
+        }
+
+        return hexString.toString();
+    } catch(Exception ex){
+       throw new RuntimeException(ex);
+    }
+}
 }
 

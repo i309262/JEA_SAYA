@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>STUDENTEN DETAIL</title>
+    </h:head>
+    <f:metadata>
+        <f:viewParam name="nameId" value="#{studentDetailBean.nameId}" required="false"/>
+        <f:event type="preRenderComponent" listener="#{studentDetailBean.loadStudent()}"/>
+    </f:metadata>
+
+    <h:body>
+        <h:panelGrid columns="2">
+            <h:outputLabel value ="Name:"/>
+            <h:outputLabel value ="#{studentDetailBean.student.name}"/>
+            <h:outputLabel value ="Age:"/>
+            <h:outputLabel value ="#{studentDetailBean.student.age}"/>
+            <h:outputLabel value ="Skill:"/>
+            <h:outputLabel value = "#{studentDetailBean.student.skill}"/>
+        </h:panelGrid>  
+
+        <h:form>
+            <h:commandLink value="Studenten(Redrirect)" action="#{studentDetailBean.selectStudenten()}" />
+        </h:form>
+
+    </h:body>
+</html>
+

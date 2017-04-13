@@ -92,4 +92,22 @@ public class kwetterService implements Serializable
     public List<User> findAllUsersByName(String name) {
         return UserDAO.findAllUsersByName(name);
     }
+    
+    public void followUser(User follower, User following) {
+        follower.addFollowing(following);
+        UserDAO.edit(follower);
+        UserDAO.edit(following);
+    }
+
+//    public void removeFollowing(User leader, User following) {
+//        leader.removeFollowing(following);
+//        UserDAO.editUser(leader);
+//        UserDAO.editUser(following);
+//    }
+
+//    public void removeFollower(User leader, User follower) {
+//        leader.removeFollower(follower);
+//        UserDAO.editUser(leader);
+//        UserDAO.editUser(follower);
+//    }
 }
