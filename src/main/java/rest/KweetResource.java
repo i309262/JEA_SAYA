@@ -34,7 +34,7 @@ public class KweetResource
     @GET
     @Path("/{username}")
     public List<Kweet> listPosterForKweet(@PathParam("username") String username) {
-        User user = kwetterService.findByUserName(username);
-        return kwetterService.findAllKweetsByUser(user);
+        //User user = kwetterService.findByUserName(username);
+        return kwetterService.findKweetsByUsername(username);
     }
 }

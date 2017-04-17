@@ -40,6 +40,8 @@ public interface KweetDao
      * @param kweet
      * @return unique user instance with parameter email or null if such user doesn't exist
      */
+    List<Kweet> findKweetsByUsername(String username);
+    
     List<Kweet> findByUser(User user);
 
     /**

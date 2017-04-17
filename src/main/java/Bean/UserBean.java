@@ -10,6 +10,7 @@ import java.util.List;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
+import model.Kweet;
 import model.User;
 import service.kwetterService;
 
@@ -25,6 +26,7 @@ public class UserBean implements Serializable{
     @Inject
     private kwetterService kwetterService;
 
+    private User user;
     private String username;
     private String password;
     private String name;
@@ -33,6 +35,7 @@ public class UserBean implements Serializable{
     private String website;
     private List<User> followers = new ArrayList<User>();
     private List<User> following = new ArrayList<User>();
+    private List<Kweet> kweets = new ArrayList<Kweet>();
     
     private String filter;
 
@@ -48,8 +51,22 @@ public class UserBean implements Serializable{
         } else {
             return kwetterService.findAllUsers();
         }
-        
     }
+    
+//    public User getUser(String username)
+//    {
+//        this.user = kwetterService.findByUserName(username);
+//        return user;
+//    }
+//    
+//    public List<Kweet> getKweetsByUserName(String usernm)
+//    {
+//        this.user = kwetterService.findByUserName(username);
+//        this.kweets = user.getKweets();
+//        return kweets;
+//        //List<Kweet> foundKweets = user.getKweets();
+//        //return foundKweets;
+//    }
     
     public void addUser(){
         //User user = new User("egel", "216b24baf5c2190db6ef75c65bed1f5084fd97c936943b27da00601729955bec", "abc", "abc" , "abc" ,"abc");
@@ -137,6 +154,13 @@ public class UserBean implements Serializable{
     public void setFollowing(List<User> following) {
         this.following = following;
     }
-    
 
+    public List<Kweet> getKweets() {
+        return kweets;
+    }
+
+    public void setKweets(List<Kweet> kweets) {
+        this.kweets = kweets;
+    }
+    
 }

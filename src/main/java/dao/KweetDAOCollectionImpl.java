@@ -66,4 +66,10 @@ public class KweetDAOCollectionImpl implements KweetDao
         
         return foundkweets;
     }
+
+    @Override
+    public List<Kweet> findKweetsByUsername(String username) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }

@@ -35,7 +35,9 @@ public class kwetterService implements Serializable
     UserDAOJPAImpl UserDAO;
     //UserDAOJPAImpl UserDAO = new UserDAOJPAImpl();
     //@EJB
-    KweetDAOCollectionImpl KweetDAO = new KweetDAOCollectionImpl();
+    @Inject
+    KweetDAOCollectionImpl KweetDAO;
+    //KweetDAOCollectionImpl KweetDAO = new KweetDAOCollectionImpl();
     
     //@Inject
     public kwetterService()
@@ -85,8 +87,8 @@ public class kwetterService implements Serializable
         return UserDAO.findByUserName(name);
     }
 
-    public List<Kweet> findAllKweetsByUser(User user) {
-        return KweetDAO.findByUser(user);
+    public List<Kweet> findKweetsByUsername(String username) {
+        return KweetDAO.findKweetsByUsername(username);
     }
 
     public List<User> findAllUsersByName(String name) {
