@@ -2,6 +2,7 @@ package model;
 
 import java.io.Serializable;
 import java.util.Calendar;
+import java.util.Date;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -31,7 +32,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Kweet.findByID", query = "SELECT k FROM Kweet k WHERE k.id = :id"),
     @NamedQuery(name = "Kweet.findAllByUser", query = "SELECT k FROM Kweet k WHERE k.poster = :poster")
     })
-    public class Kweet implements Serializable 
+    public class Kweet implements Serializable , Comparable<Kweet>
 {
 
     @Id
@@ -45,7 +46,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     //@ManyToOne(optional = false)
     private User poster;
     
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     private Calendar datetime;
 
     public Kweet(String message, User poster) {
@@ -96,6 +97,12 @@ import javax.xml.bind.annotation.XmlRootElement;
         kweet.setPoster(kwetteraar);
         kweet.setMessage(message);
         kweet.setDatetime(Calendar.getInstance());
+    }
+    
+    
+    @Override
+    public int compareTo(Kweet o) {
+        return getDatetime().compareTo(o.getDatetime());
     }
 
     public Kweet() {

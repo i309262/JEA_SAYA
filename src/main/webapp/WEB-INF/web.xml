@@ -42,7 +42,7 @@
     </login-config>
     -->
     <welcome-file-list>
-        <welcome-file>user.xhtml</welcome-file>
+        <welcome-file>userdetail.xhtml</welcome-file>
     </welcome-file-list>
 
     <login-config>

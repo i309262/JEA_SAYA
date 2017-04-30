@@ -4,27 +4,64 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core">
     <h:head>
-        <title>STUDENTEN DETAIL</title>
+        <title>USER DETAIL</title>
     </h:head>
     <f:metadata>
-        <f:viewParam name="nameId" value="#{studentDetailBean.nameId}" required="false"/>
-        <f:event type="preRenderComponent" listener="#{studentDetailBean.loadStudent()}"/>
+        <!--<f:viewParam name="nameId" value="#{UserDetailBean.nameId}" required="false"/> -->
+        <f:event type="preRenderComponent" listener="#{UserDetailBean.loadUser(authBean.getPrincipalName())}"/>
     </f:metadata>
 
     <h:body>
         <h:panelGrid columns="2">
-            <h:outputLabel value ="Name:"/>
-            <h:outputLabel value ="#{studentDetailBean.student.name}"/>
-            <h:outputLabel value ="Age:"/>
-            <h:outputLabel value ="#{studentDetailBean.student.age}"/>
-            <h:outputLabel value ="Skill:"/>
-            <h:outputLabel value = "#{studentDetailBean.student.skill}"/>
+            <h:outputLabel value ="current user:"/>
+            <h:outputLabel value ="#{UserDetailBean.user.username}"/>
         </h:panelGrid>  
+        <br/>        
 
+        <h:panelGroup>
+            <h:form>
+                <h:outputLabel value="Skill Filter: "/>  
+                <h:inputText value="#{UserDetailBean.filter}" id="filter">
+                    <f:ajax event="keyup" execute="filter" render="allKweets"/>
+                </h:inputText> 
+            </h:form>
+        </h:panelGroup>
+        <br/>
+        <h:panelGroup id="postKweet">
+            <h:form>
+                <h:panelGrid columns="1">
+                    Whats happening? <h:inputText value="#{UserDetailBean.message}" maxlength="140"/>
+                </h:panelGrid>
+                <h:commandButton value ="Kweet!" action="#{UserDetailBean.addKweet(authBean.getPrincipalName())}"/>
+            </h:form>
+        </h:panelGroup>
+        <br/>
+        
+            <h:panelGroup id="allkweets">
+            <h:form>
+                <h:dataTable value="#{UserDetailBean.searchKweets()}" var ="kweet">
+                    <h:column>
+                        <f:facet name = "header"> all kweets:</f:facet>
+                        <h:outputLabel value="#{kweet.message}"/> 
+                        <br/>
+                        <h:outputLabel value="#{kweet.datetime.getTime()}"/>  
+                        <br/><br/>
+                    </h:column> 
+                </h:dataTable>
+            </h:form>
+        </h:panelGroup>
+        <br/>
+        
         <h:form>
-            <h:commandLink value="Studenten(Redrirect)" action="#{studentDetailBean.selectStudenten()}" />
+            <h:commandLink value="followers: #{UserDetailBean.user.followers.size()}" action="#{UserDetailBean.selectUsers()}" />
         </h:form>
-
+        <h:form>
+            <h:commandLink value="followers: #{UserDetailBean.user.following.size()}" action="#{UserDetailBean.selectUsers()}" />
+        </h:form>
+        
+        <h:form>
+            <h:commandLink value="User overview" action="#{UserDetailBean.selectUsers()}" />
+        </h:form>
     </h:body>
 </html>
 

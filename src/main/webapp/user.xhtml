@@ -6,6 +6,10 @@
     <h:head>
         <title>USERS</title>
     </h:head>
+    <f:metadata>
+        <!--<f:viewParam name="nameId" value="#{UserDetailBean.nameId}" required="false"/> -->
+        <f:event type="preRenderComponent" listener="#{UserDetailBean.loadUser(authBean.getPrincipalName())}"/>
+    </f:metadata>
     <h:body>
 
         <h:panelGroup>
@@ -15,15 +19,28 @@
             </h:form>
         </h:panelGroup>
         <br/>
+        
         <h:panelGroup>
             <h:form>
-                <h:outputLabel value="Skill Filter: "/>  
+                <h:outputLabel value="Details"/>  
                 <h:inputText value="#{UserBean.filter}" id="filter">
-                    <f:ajax event="keyup" execute="filter" render="studenten"/>
+                    <f:ajax event="keyup" execute="filter" render="users"/>
                 </h:inputText> 
             </h:form>
         </h:panelGroup>
         <br/>
+        
+        <h:panelGroup>
+            <h:form>
+               Bio:     <h:outputLabel value="#{UserDetailBean.user.bio}"/>  <br/>
+               Locatie: <h:outputLabel value="#{UserDetailBean.user.location}"/>  <br/>
+               Website: <h:outputLabel value="#{UserDetailBean.user.website}"/> <br/>
+            </h:form>
+        </h:panelGroup>
+        <br/>
+        
+        
+        
         <h:panelGroup id="users">
             <h:form>
                 <h:dataTable value="#{UserBean.getUsers()}" var ="user">
@@ -84,6 +101,10 @@
                 <h:commandButton value ="AddUser" action="#{UserBean.addUser()}"/>
             </h:form>
         </h:panelGroup>
+        <br/>
+        
+
+        <br/>
     </h:body>
 </html>
 

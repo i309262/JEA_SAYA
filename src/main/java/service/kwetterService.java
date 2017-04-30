@@ -6,9 +6,13 @@
 package service;
 
 import dao.KweetDAOCollectionImpl;
+import dao.KweetDAOJPAImpl;
 import dao.UserDAOCollectionImpl;
 import dao.UserDAOJPAImpl;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.LocalBean;
@@ -36,7 +40,7 @@ public class kwetterService implements Serializable
     //UserDAOJPAImpl UserDAO = new UserDAOJPAImpl();
     //@EJB
     @Inject
-    KweetDAOCollectionImpl KweetDAO;
+    KweetDAOJPAImpl KweetDAO;
     //KweetDAOCollectionImpl KweetDAO = new KweetDAOCollectionImpl();
     
     //@Inject
@@ -100,6 +104,33 @@ public class kwetterService implements Serializable
         UserDAO.edit(follower);
         UserDAO.edit(following);
     }
+    
+    public List<Kweet> getAllKweets(User user) 
+    {
+        List<Kweet> kweets = new ArrayList<>();
+        //all kweets from following, might also be possible with just user.getfollowing
+        for (User u : UserDAO.findByUserName(user.getUsername()).getFollowing()) {
+            kweets.addAll(u.getKweets());
+        }
+        //all kweets from logged in user
+        kweets.addAll(UserDAO.findByUserName(user.getUsername()).getKweets());
+        Collections.sort(kweets);
+        Collections.reverse(kweets);
+        return kweets;
+    }
+    
+        public List<Kweet> getTop10Kweets(User user) 
+    {
+        List<Kweet> kweets = new ArrayList<>();
+
+        //all kweets from logged in user
+        kweets.addAll(UserDAO.findByUserName(user.getUsername()).getKweets());
+        Collections.sort(kweets);
+        Collections.reverse(kweets);
+        return kweets.subList(0, 10);
+    }
+
+
 
 //    public void removeFollowing(User leader, User following) {
 //        leader.removeFollowing(following);

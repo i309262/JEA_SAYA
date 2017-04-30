@@ -36,7 +36,6 @@ public class UserBean implements Serializable{
     private List<User> followers = new ArrayList<User>();
     private List<User> following = new ArrayList<User>();
     private List<Kweet> kweets = new ArrayList<Kweet>();
-    
     private String filter;
 
     public List<User> getUsers() {
@@ -67,6 +66,12 @@ public class UserBean implements Serializable{
 //        //List<Kweet> foundKweets = user.getKweets();
 //        //return foundKweets;
 //    }
+    
+    public void loadUser(String username) 
+    {
+        User u = kwetterService.findByUserName(username);
+        this.setUser(u);
+    }
     
     public void addUser(){
         //User user = new User("egel", "216b24baf5c2190db6ef75c65bed1f5084fd97c936943b27da00601729955bec", "abc", "abc" , "abc" ,"abc");
@@ -163,4 +168,12 @@ public class UserBean implements Serializable{
         this.kweets = kweets;
     }
     
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) 
+    {
+        this.user = user;
+    }
 }
