@@ -105,6 +105,15 @@ public class kwetterService implements Serializable
         UserDAO.edit(following);
     }
     
+
+    public List<User> getFollowing(User user) {
+        return UserDAO.getAllFollowing(user);
+    }
+
+    public List<User> getFollowers(User user) {
+        return UserDAO.getAllFollowers(user);
+    }
+    
     public List<Kweet> getAllKweets(User user) 
     {
         List<Kweet> kweets = new ArrayList<>();
@@ -127,7 +136,14 @@ public class kwetterService implements Serializable
         kweets.addAll(UserDAO.findByUserName(user.getUsername()).getKweets());
         Collections.sort(kweets);
         Collections.reverse(kweets);
-        return kweets.subList(0, 10);
+        if(kweets.size() < 10)
+        {
+            return kweets;
+        }
+        else
+        {
+            return kweets.subList(0, 10);
+        }
     }
 
 

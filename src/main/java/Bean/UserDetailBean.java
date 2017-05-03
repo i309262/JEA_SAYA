@@ -4,11 +4,16 @@
  */
 package Bean;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
+import javax.faces.context.ExternalContext;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import model.Kweet;
 import model.User;
@@ -21,26 +26,29 @@ import service.kwetterService;
  */
 @Named(value = "UserDetailBean")
 @RequestScoped
-public class UserDetailBean {
+public class UserDetailBean implements Serializable{
 
     //@EJB
     @Inject
     private kwetterService kwetterService;
     private String message;
     private User user;
-    private String filter;
+    private String kweetFilter;
+    private String userFilter;
     private String bio;
     private String location;
     private String website;
 
+    ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
+    
     public UserDetailBean() {
     }
 
     public List<Kweet> searchKweets() {
-        if (filter != null && filter.length() > 0) {
+        if (kweetFilter != null && kweetFilter.length() > 0) {
             List<Kweet> filtered = new ArrayList<>();
             for (Kweet k : kwetterService.getAllKweets(user)) {
-                if (k.getMessage().toLowerCase().startsWith(filter)) {
+                if (k.getMessage().toLowerCase().startsWith(kweetFilter)) {
                     filtered.add(k);
                 }
             }
@@ -50,10 +58,41 @@ public class UserDetailBean {
         }
     }
     
+    public List<User> searchUsers() 
+    {
+        if (userFilter != null && userFilter.length() > 0) 
+        {
+            List<User> filtered = new ArrayList<>();
+            for (User u : kwetterService.findAllUsers()) 
+            {
+                if (u.getUsername().toLowerCase().startsWith(userFilter)) 
+                {
+                    filtered.add(u);
+                }
+            }
+            return filtered;
+        } 
+        else 
+        {
+            return null;
+        }
+    }
+    
     public void loadUser(String username) 
     {
         User u = kwetterService.findByUserName(username);
         this.setUser(u);
+    }
+    
+    public void addFollower(String follower)
+    {
+
+        Map<String,String> params = externalContext.getRequestParameterMap();
+        String following = params.get("following");
+        
+        User foundfollower = kwetterService.findByUserName(follower);
+        User foundfollowing = kwetterService.findByUserName(following);
+        kwetterService.followUser(foundfollower, foundfollowing);
     }
 
     public void addKweet(String username)
@@ -64,21 +103,35 @@ public class UserDetailBean {
         //user.addKweet(k);
     }
     
-    public List<Kweet> allKweets()//String username)
+    public List<Kweet> allKweets()
     {
-        ///User u = kwetterService.findByUserName(username);
         return kwetterService.getAllKweets(user);
+    }
+    
+    public List<User> allFollowing()
+    {
+        return kwetterService.getFollowing(user);
+    }
+    
+    public List<User> allFollowers()
+    {
+        return kwetterService.getFollowers(user);
     }
     
     public List<Kweet> top10Kweets(String username)
     {
-        User u = kwetterService.findByUserName(username);
+        //User u = kwetterService.findByUserName(username);
         return kwetterService.getTop10Kweets(user);
     }
     
     public String selectUsers() 
     {
         return "user?faces-redirect=true";
+    }
+    
+    public String showProfile(String username) 
+    {
+        return "/user.xhtml";
     }
     
     public User getUser() {
@@ -98,12 +151,20 @@ public class UserDetailBean {
         this.message = message;
     }
 
-    public String getFilter() {
-        return filter;
+    public String getKweetFilter() {
+        return kweetFilter;
     }
 
-    public void setFilter(String filter) {
-        this.filter = filter;
+    public void setKweetFilter(String filter) {
+        this.kweetFilter = filter;
+    }
+
+    public String getUserFilter() {
+        return userFilter;
+    }
+
+    public void setUserFilter(String userFilter) {
+        this.userFilter = userFilter;
     }
 
     public String getBio() {

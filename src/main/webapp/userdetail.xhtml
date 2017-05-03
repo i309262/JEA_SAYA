@@ -18,15 +18,7 @@
         </h:panelGrid>  
         <br/>        
 
-        <h:panelGroup>
-            <h:form>
-                <h:outputLabel value="Skill Filter: "/>  
-                <h:inputText value="#{UserDetailBean.filter}" id="filter">
-                    <f:ajax event="keyup" execute="filter" render="allKweets"/>
-                </h:inputText> 
-            </h:form>
-        </h:panelGroup>
-        <br/>
+        
         <h:panelGroup id="postKweet">
             <h:form>
                 <h:panelGrid columns="1">
@@ -37,7 +29,17 @@
         </h:panelGroup>
         <br/>
         
-            <h:panelGroup id="allkweets">
+        <h:panelGroup>
+            <h:form>
+                <h:outputLabel value="zoek kweet: "/>  
+                <h:inputText value="#{UserDetailBean.kweetFilter}" id="kweetFilter">
+                    <f:ajax event="keyup" execute="searchKweets" render="allKweets"/>
+                </h:inputText> 
+            </h:form>
+        </h:panelGroup>
+        <br/>
+        
+        <h:panelGroup id="allkweets">
             <h:form>
                 <h:dataTable value="#{UserDetailBean.searchKweets()}" var ="kweet">
                     <h:column>
@@ -46,6 +48,42 @@
                         <br/>
                         <h:outputLabel value="#{kweet.datetime.getTime()}"/>  
                         <br/><br/>
+                    </h:column> 
+                </h:dataTable>
+            </h:form>
+        </h:panelGroup>
+        <br/>
+        
+        <h:panelGroup>
+            <h:form>
+                <h:outputLabel value="zoek user"/>  
+                <h:inputText value="#{UserDetailBean.userFilter}" id="userFilter">
+                    <f:ajax event="keyup" execute="searchUsers" render="allUsers"/>
+                </h:inputText> 
+            </h:form>
+        </h:panelGroup>
+        <br/>
+        
+        <h:panelGroup id="allUsers">
+            <h:form>
+                <h:dataTable value="#{UserDetailBean.searchUsers()}" var ="user">
+                    <h:column>
+                        <f:facet name = "header"> found users:</f:facet>
+                        <h:link outcome="/user.xhtml?username=#{user.username}" value="#{user.username}"></h:link>
+                    </h:column> 
+                </h:dataTable>
+            </h:form>
+        </h:panelGroup>
+        <br/>
+        
+
+        <h:panelGroup id="allFollowing">
+            <h:form>
+                <h:dataTable value="#{UserDetailBean.allFollowing()}" var ="following">
+                    <h:column>
+                        <f:facet name = "header"> all following:</f:facet>
+                        <h:link outcome="/user.xhtml?username=#{following.username}" value="#{following.username}"></h:link>
+                        <br/>
                     </h:column> 
                 </h:dataTable>
             </h:form>

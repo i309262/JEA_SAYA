@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import model.Kweet;
 import model.User;
@@ -79,10 +80,12 @@ public class UserBean implements Serializable{
         kwetterService.createUser(user);
     }
     
+    //moved this to userdetailbeean
     public void addFollower(String follower, User following){
         User founduser = kwetterService.findByUserName(follower);
         kwetterService.followUser(founduser, following);
     }
+
 
     public void removeUser(User user) {
         kwetterService.deleteUser(user);

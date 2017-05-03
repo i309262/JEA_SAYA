@@ -124,4 +124,18 @@ public class UserDAOJPAImpl implements UserDao, Serializable
             return null;
         }
     }
+    
+    @Override
+    public List<User> getAllFollowing(User user) 
+    {
+        User u = findByUserName(user.getUsername());
+        return u.getFollowing();
+    }
+    
+    @Override
+    public List<User> getAllFollowers(User user) 
+    {
+        User u = findByUserName(user.getUsername());
+        return u.getFollowers();
+    }
 }

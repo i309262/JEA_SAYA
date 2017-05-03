@@ -53,5 +53,8 @@ public interface UserDao
      * @param user - entity instance
      */
     void remove(User user);
+    
+    List<User> getAllFollowing(User user);
 
+    List<User> getAllFollowers(User user);
 }
