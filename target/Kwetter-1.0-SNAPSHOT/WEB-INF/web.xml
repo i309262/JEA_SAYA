@@ -24,7 +24,7 @@
         </session-timeout>
     </session-config>
 
-    <security-constraint>
+<!--    <security-constraint>
         <web-resource-collection>
             <web-resource-name>Secure Pages</web-resource-name>
             <description/>
@@ -33,19 +33,16 @@
         <auth-constraint>
             <role-name>regular_role</role-name>
         </auth-constraint>
-    </security-constraint>
+    </security-constraint>-->
 
-<!-- wordt aangepast naar form voor frontend
-    <login-config>
-        <auth-method>BASIC</auth-method>
-        <realm-name>security_realm</realm-name>
-    </login-config>
-    -->
+    <!-- aangepast voor angluar, dit was eerst userdetail.xhtml -->
     <welcome-file-list>
-        <welcome-file>userdetail.xhtml</welcome-file>
+        <welcome-file>index.html</welcome-file>
     </welcome-file-list>
 
-    <login-config>
+<!--    Authenticatie weggehaald voor angular
+        
+        <login-config>
         <auth-method>FORM</auth-method>
         <realm-name>security_realm</realm-name>
         <form-login-config>
@@ -56,6 +53,6 @@
     <security-role>
         <description/>
         <role-name>regular_role</role-name>
-    </security-role>
+    </security-role>-->
     
 </web-app>

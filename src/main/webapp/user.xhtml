@@ -25,6 +25,7 @@
         <h:panelGroup>
             #{param['username']}'s info:
             <h:form>
+               <img src="#{UserDetailBean.getProfilePictureURL()}"/> <br/>
                Bio:     <h:outputLabel value="#{UserDetailBean.user.bio}"/>  <br/>
                Locatie: <h:outputLabel value="#{UserDetailBean.user.location}"/>  <br/>
                Website: <h:outputLabel value="#{UserDetailBean.user.website}"/> <br/>
@@ -55,6 +56,15 @@
         </h:panelGroup>
         <br/>
         
+        
+        <h:panelGroup id="user">
+            <h:form>
+                <h:panelGrid columns="2">
+                    name: <h:inputText value="#{UserDetailBean.name}"/>
+                </h:panelGrid>
+                <h:commandButton value ="EditUser" action="#{UserDetailBean.EditUser()}"/>
+            </h:form>
+        </h:panelGroup>
 
         <br/>
     </h:body>

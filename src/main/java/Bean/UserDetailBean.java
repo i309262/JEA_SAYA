@@ -8,6 +8,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
@@ -122,6 +123,17 @@ public class UserDetailBean implements Serializable{
     {
         //User u = kwetterService.findByUserName(username);
         return kwetterService.getTop10Kweets(user);
+    }
+    
+        public void editUser(String username)
+    {
+        User u = kwetterService.findByUserName(username);
+        kwetterService.editUser(u);
+        //user.addKweet(k);
+    }
+    
+    public String getProfilePictureURL() {
+        return "https://randomuser.me/api/portraits/women/" + ((new Random()).nextInt( 9 - 1) + 1) + ".jpg";
     }
     
     public String selectUsers() 

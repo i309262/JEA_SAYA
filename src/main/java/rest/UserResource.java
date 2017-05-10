@@ -6,6 +6,7 @@ import java.security.NoSuchAlgorithmException;
 import model.Kweet;
 import model.User;
 import java.util.List;
+import javax.annotation.security.PermitAll;
 import javax.inject.Inject;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
@@ -29,6 +30,7 @@ import service.kwetterService;
  * @author saya
  */
 @Path("/user")
+@PermitAll
 public class UserResource
 {
     @Inject

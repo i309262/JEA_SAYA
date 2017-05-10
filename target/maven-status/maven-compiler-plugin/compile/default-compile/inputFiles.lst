@@ -5,6 +5,7 @@
 /home/saya/NetBeansProjects/Kwetter/src/main/java/model/Role.java
 /home/saya/NetBeansProjects/Kwetter/src/main/java/Bean/UserDetailBean.java
 /home/saya/NetBeansProjects/Kwetter/src/main/java/rest/KweetResource.java
+/home/saya/NetBeansProjects/Kwetter/src/main/java/rest/JaxCorsFilter.java
 /home/saya/NetBeansProjects/Kwetter/src/main/java/rest/JSONPrep.java
 /home/saya/NetBeansProjects/Kwetter/src/main/java/model/Kweet.java
 /home/saya/NetBeansProjects/Kwetter/src/main/java/dao/KweetDAOJPAImpl.java
