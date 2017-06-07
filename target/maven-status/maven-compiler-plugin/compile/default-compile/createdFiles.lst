@@ -2,11 +2,13 @@ dao/KweetDao.class
 model/two/Kweet_.class
 model/two/Role_.class
 rest/UserResource.class
+websocket/WebSocketServer.class
 rest/JSONPrep.class
 rest/SessionLister.class
 dao/UserDAOCollectionImpl.class
 Bean/UserDetailBean.class
 service/kwetterService.class
+websocket/SessionHandler.class
 dao/KweetDAOJPAImpl.class
 dao/KweetDAOCollectionImpl.class
 rest/KweetResource.class

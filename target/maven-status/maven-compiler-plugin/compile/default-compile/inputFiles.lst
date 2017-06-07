@@ -10,11 +10,13 @@
 /home/saya/NetBeansProjects/Kwetter/src/main/java/rest/JSONPrep.java
 /home/saya/NetBeansProjects/Kwetter/src/main/java/model/Kweet.java
 /home/saya/NetBeansProjects/Kwetter/src/main/java/dao/KweetDAOJPAImpl.java
+/home/saya/NetBeansProjects/Kwetter/src/main/java/websocket/SessionHandler.java
 /home/saya/NetBeansProjects/Kwetter/src/main/java/service/kwetterService.java
 /home/saya/NetBeansProjects/Kwetter/src/main/java/rest/UserResource.java
 /home/saya/NetBeansProjects/Kwetter/src/main/java/model/User.java
 /home/saya/NetBeansProjects/Kwetter/src/main/java/dao/UserDao.java
 /home/saya/NetBeansProjects/Kwetter/src/main/java/Bean/UserBean.java
+/home/saya/NetBeansProjects/Kwetter/src/main/java/websocket/WebSocketServer.java
 /home/saya/NetBeansProjects/Kwetter/src/main/java/dao/UserDAOCollectionImpl.java
 /home/saya/NetBeansProjects/Kwetter/src/main/java/nl/fontys/jea/kwetter/JAXRSConfiguration.java
 /home/saya/NetBeansProjects/Kwetter/src/main/java/dao/UserManager.java
