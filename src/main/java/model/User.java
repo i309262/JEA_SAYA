@@ -32,7 +32,8 @@ import javax.persistence.Table;
          {
     @NamedQuery(name = "User.findAll", query = "FROM User u"),
     @NamedQuery(name = "User.count", query = "select count(u) from User as u"),
-    @NamedQuery(name = "User.findByUserName", query = "select u from User as u where u.username = :username")
+    @NamedQuery(name = "User.findByUserName", query = "select u from User as u where u.username = :username"),
+    @NamedQuery(name = "User.login", query = "select u from User as u where u.username = :username and u.password = :password")
          }
         )
   @Table(name = "user")

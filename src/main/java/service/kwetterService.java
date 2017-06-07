@@ -60,6 +60,7 @@ public class kwetterService implements Serializable
     public void createKweet(Kweet kweet) {
         kweet.getPoster().addKweet(kweet);
         UserDAO.edit(kweet.getPoster());
+        KweetDAO.create(kweet);
     }
 
     public void deleteUser(User user) {
@@ -114,26 +115,33 @@ public class kwetterService implements Serializable
         return UserDAO.getAllFollowers(user);
     }
     
-    public List<Kweet> getAllKweets(User user) 
+    public List<Kweet> getAllKweets(String username) 
     {
         List<Kweet> kweets = new ArrayList<>();
         //all kweets from following, might also be possible with just user.getfollowing
-        for (User u : UserDAO.findByUserName(user.getUsername()).getFollowing()) {
+        for (User u : UserDAO.findByUserName(username).getFollowing()) {
             kweets.addAll(u.getKweets());
         }
         //all kweets from logged in user
-        kweets.addAll(UserDAO.findByUserName(user.getUsername()).getKweets());
+        kweets.addAll(UserDAO.findByUserName(username).getKweets());
         Collections.sort(kweets);
         Collections.reverse(kweets);
         return kweets;
     }
     
-        public List<Kweet> getTop10Kweets(User user) 
+    public List<Kweet> getKweetByText(String message) 
     {
-        List<Kweet> kweets = new ArrayList<>();
-
-        //all kweets from logged in user
-        kweets.addAll(UserDAO.findByUserName(user.getUsername()).getKweets());
+        List<Kweet> foundKweets = KweetDAO.findByText(message);
+        Collections.sort(foundKweets);
+        Collections.reverse(foundKweets);
+        return foundKweets;
+    }
+    
+    public List<Kweet> getTop10Kweets(String username) 
+    {
+        List<Kweet> kweets = new ArrayList<>();      
+        
+        kweets.addAll(UserDAO.findByUserName(username).getKweets());
         Collections.sort(kweets);
         Collections.reverse(kweets);
         if(kweets.size() < 10)
@@ -145,8 +153,17 @@ public class kwetterService implements Serializable
             return kweets.subList(0, 10);
         }
     }
-
-
+    
+    public boolean login(String userName, String password) 
+    {
+        return UserDAO.login(userName, password);
+    }
+        
+    public void editBio(String username, String bio) {
+        User user = this.findByUserName(username);
+        user.setBio(bio);
+        this.editUser(user);
+    }
 
 //    public void removeFollowing(User leader, User following) {
 //        leader.removeFollowing(following);

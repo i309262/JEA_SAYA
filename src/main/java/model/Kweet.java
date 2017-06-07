@@ -30,7 +30,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "Kweet.findAll", query = "SELECT k FROM Kweet k"),
     @NamedQuery(name = "Kweet.findByID", query = "SELECT k FROM Kweet k WHERE k.id = :id"),
-    @NamedQuery(name = "Kweet.findAllByUser", query = "SELECT k FROM Kweet k WHERE k.poster = :poster")
+    @NamedQuery(name = "Kweet.findAllByUser", query = "SELECT k FROM Kweet k WHERE k.poster = :poster"),
+    @NamedQuery(name = "Kweet.getByText", query = "SELECT k FROM Kweet k where k.message like :message")
     })
     public class Kweet implements Serializable , Comparable<Kweet>
 {

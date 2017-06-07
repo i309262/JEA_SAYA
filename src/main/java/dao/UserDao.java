@@ -57,4 +57,6 @@ public interface UserDao
     List<User> getAllFollowing(User user);
 
     List<User> getAllFollowers(User user);
+    
+    boolean login(String username, String password);
 }

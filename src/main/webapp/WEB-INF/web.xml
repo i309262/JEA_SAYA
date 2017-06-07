@@ -23,7 +23,7 @@
             30  
         </session-timeout>
     </session-config>
-
+<!--dit weghalen als shit kapot gaat voor angular -->
 <!--    <security-constraint>
         <web-resource-collection>
             <web-resource-name>Secure Pages</web-resource-name>
@@ -35,14 +35,13 @@
         </auth-constraint>
     </security-constraint>-->
 
-    <!-- aangepast voor angluar, dit was eerst userdetail.xhtml -->
+    <!-- aangepast voor angluar, dit was eerst userdetail.xhtml, is nu index.html -->
     <welcome-file-list>
         <welcome-file>index.html</welcome-file>
     </welcome-file-list>
 
-<!--    Authenticatie weggehaald voor angular
-        
-        <login-config>
+<!--dit weghalen als shit kapot gaat voor angular -->
+<!--    <login-config>
         <auth-method>FORM</auth-method>
         <realm-name>security_realm</realm-name>
         <form-login-config>

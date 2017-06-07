@@ -2,6 +2,7 @@ package rest;
 
 
 import java.io.UnsupportedEncodingException;
+import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import model.Kweet;
 import model.User;
@@ -36,17 +37,6 @@ public class UserResource
     @Inject
     kwetterService kwetterService;
     
-    
-    @GET 
-    @Path("/testKweet")
-    @Produces(MediaType.APPLICATION_JSON)
-    public Kweet testKweet()
-    {   
-        //Kweet k = new Kweet("kpoe");
-        Kweet k = new Kweet("leuk", new User("Saya"));
-        //return k.getMessage();
-        return k;
-    }
     
     @GET
     @Path("/all")
@@ -91,6 +81,22 @@ public class UserResource
         return null;
     }
     
+    @GET
+    @Path("followers/{username}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<User> getFollowers(@PathParam("username") String username) 
+    {
+        return JSONPrep.prepToUserForJson(kwetterService.findByUserName(username)).getFollowers();
+    }
+    
+    @GET
+    @Path("following/{username}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<User> getFollowing(@PathParam("username") String username) 
+    {
+        return JSONPrep.prepToUserForJson(kwetterService.findByUserName(username)).getFollowing();
+    }
+    
     
     @GET
     @Path("/count")
@@ -132,5 +138,65 @@ public class UserResource
         return "succesfully inserted users with kweets";
 
     }
+    
+    @POST
+    @Path("login")
+    @Produces(MediaType.APPLICATION_JSON)
+    public User inloggen(@FormParam("username") String username, @FormParam("password") String password) {
 
+        String hashstring = null;
+        try {
+            MessageDigest digest = MessageDigest.getInstance("SHA-256");
+            byte[] hash = digest.digest(password.getBytes("UTF-8"));
+            StringBuilder hexString = new StringBuilder();
+
+            for (int i = 0; i < hash.length; i++) {
+                String hex = Integer.toHexString(0xff & hash[i]);
+                if (hex.length() == 1)
+                    hexString.append('0');
+                hexString.append(hex);
+            }
+
+            hashstring = hexString.toString();
+        } catch (Exception x) {
+            System.out.println(x);
+        }
+        String hashedPassword = (hashstring == null || hashstring.isEmpty()) ? password : hashstring;
+        if (kwetterService.login(username, hashedPassword)) 
+        {
+            User user = kwetterService.findByUserName(username);
+
+            return JSONPrep.prepToUserForJson(user);
+        }
+        return new User(hashedPassword);
+    }
+    
+    @POST
+    @Path("edituser")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Boolean editUser(@FormParam("username") String username, @FormParam("name") String name, @FormParam("locatie") String locatie, @FormParam("website") String website ,@FormParam("bio") String bio) {
+
+        User user = kwetterService.findByUserName(username);
+        user.setName(name);
+        user.setLocation(locatie);
+        user.setWebsite(website);
+        user.setBio(bio);
+        if (user != null) {
+            kwetterService.editUser(user);
+            return true;
+        }
+        return false;
+    }
+    
+    @POST
+    @Path("follow")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Boolean followUser(@FormParam("follower") String followerName, @FormParam("leader") String leaderName) {
+
+        User follower = kwetterService.findByUserName(followerName);
+        User leader   = kwetterService.findByUserName(leaderName);
+        kwetterService.followUser(follower, leader);
+        
+        return true;
+    }
 }

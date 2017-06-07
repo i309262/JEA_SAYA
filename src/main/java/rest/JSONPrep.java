@@ -53,6 +53,7 @@ public class JSONPrep
         user.setKweets(null);
         user.setFollowers(null);
         user.setFollowing(null);
+        user.setRole(null);
         return user;
     }
 

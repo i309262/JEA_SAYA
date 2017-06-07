@@ -49,4 +49,6 @@ public interface KweetDao
      * @param kweet
      */
     void remove(Kweet kweet);
+    
+    List<Kweet> findByText(String message);
 }

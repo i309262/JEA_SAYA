@@ -28,6 +28,7 @@ public class JAXRSConfiguration extends Application
         classes.add(JAXRSConfiguration.class);
         //classes.add(KweetResource.class);
         classes.add(UserResource.class);
+        classes.add(KweetResource.class);
         return classes;
     }
 }

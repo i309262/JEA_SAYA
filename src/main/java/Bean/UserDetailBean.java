@@ -48,14 +48,14 @@ public class UserDetailBean implements Serializable{
     public List<Kweet> searchKweets() {
         if (kweetFilter != null && kweetFilter.length() > 0) {
             List<Kweet> filtered = new ArrayList<>();
-            for (Kweet k : kwetterService.getAllKweets(user)) {
+            for (Kweet k : kwetterService.getAllKweets(user.getUsername())) {
                 if (k.getMessage().toLowerCase().startsWith(kweetFilter)) {
                     filtered.add(k);
                 }
             }
             return filtered;
         } else {
-            return kwetterService.getAllKweets(user);
+            return kwetterService.getAllKweets(user.getUsername());
         }
     }
     
@@ -106,7 +106,7 @@ public class UserDetailBean implements Serializable{
     
     public List<Kweet> allKweets()
     {
-        return kwetterService.getAllKweets(user);
+        return kwetterService.getAllKweets(user.getUsername());
     }
     
     public List<User> allFollowing()
@@ -122,7 +122,7 @@ public class UserDetailBean implements Serializable{
     public List<Kweet> top10Kweets(String username)
     {
         //User u = kwetterService.findByUserName(username);
-        return kwetterService.getTop10Kweets(user);
+        return kwetterService.getTop10Kweets(username);
     }
     
         public void editUser(String username)

@@ -19,7 +19,7 @@ import model.User;
  */
 @RequestScoped
 public class KweetDAOJPAImpl implements KweetDao
-{
+{   
 
     //public static EntityManagerFactory emf = Persistence.createEntityManagerFactory("PUKwetter");
     @PersistenceContext(unitName = "PUKwetter")
@@ -35,7 +35,7 @@ public class KweetDAOJPAImpl implements KweetDao
     @Override
     public void create(Kweet kweet) 
     {
-        em.persist(kweet);
+        em.merge(kweet);
     }
 
     @Override
@@ -47,7 +47,7 @@ public class KweetDAOJPAImpl implements KweetDao
     @Override
     public List<Kweet> findAll() 
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return em.createNamedQuery("Kweet.findAll", Kweet.class).getResultList();
     }
 
     @Override
@@ -75,5 +75,23 @@ public class KweetDAOJPAImpl implements KweetDao
                 return null;
         }
     }
+
+    @Override
+    public List<Kweet> findByText(String message) 
+    {
+        Query q = em.createNamedQuery("Kweet.getByText");
+        q.setParameter("message", "%" + message + "%");
+        try 
+        {
+            return  q.getResultList();
+        } 
+        catch (Exception e) 
+        {
+            return null;
+        }
+    }
+    
+    
+    
     
 }

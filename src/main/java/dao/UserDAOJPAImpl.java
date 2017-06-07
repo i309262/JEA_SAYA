@@ -15,6 +15,7 @@ import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaQuery;
 import model.User;
+import rest.JSONPrep;
 
 /**
  *
@@ -129,6 +130,7 @@ public class UserDAOJPAImpl implements UserDao, Serializable
     public List<User> getAllFollowing(User user) 
     {
         User u = findByUserName(user.getUsername());
+        //return JSONPrep.prepToUserForJson(u).getFollowing();
         return u.getFollowing();
     }
     
@@ -136,6 +138,31 @@ public class UserDAOJPAImpl implements UserDao, Serializable
     public List<User> getAllFollowers(User user) 
     {
         User u = findByUserName(user.getUsername());
+//        return JSONPrep.prepToUserForJson(u).getFollowers();
         return u.getFollowers();
+    }
+    
+    @Override
+    public boolean login(String username, String password) {
+
+        //User user = (User) em.createQuery("select u from User u where u.USERNAME = '" + username + "' and u.PASSWORD = '" + password + "'").getSingleResult();
+            
+        Query q = em.createNamedQuery("User.login", User.class);
+        q.setParameter("username", username);
+        q.setParameter("password", password);
+        try
+        {
+                User u =  (User) q.getSingleResult();
+                if(u != null)
+                {
+                    return true;
+                }
+        } 
+        catch (Exception e)
+        {
+                return false;
+        }
+        
+        return false;
     }
 }
