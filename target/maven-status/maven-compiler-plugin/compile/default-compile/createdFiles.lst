@@ -13,6 +13,7 @@ dao/KweetDAOJPAImpl.class
 dao/KweetDAOCollectionImpl.class
 rest/KweetResource.class
 dao/UserDao.class
+Bean/MessageBean.class
 model/one/Kweet_.class
 model/two/User_.class
 rest/JaxCorsFilter.class
